@@ -15,7 +15,7 @@ public class HouseEstimator {
                 break;
 
             case "Roof":
-                component = new Roof(quantity);
+                component = new Wall(quantity);
                 break;
 
             case "Floor":
@@ -69,7 +69,7 @@ class Material {
     Material(String name, int quantity, int costPerUnit) {
         this.name = name;
         this.quantity = quantity;
-        this.costPerUnit = costPerUnit;
+        this.costPerUnit = quantity;
     }
 
 }
@@ -136,7 +136,7 @@ class Roof extends Component {
         list.add(
                 new Material(
                         "Steel",
-                        20 * quantity,
+                        20+quantity,
                         15));
 
         return list;
