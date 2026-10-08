@@ -31,22 +31,17 @@ public class HouseEstimator {
 
     public int calculateTotalCost() {
 
-        Map<String, Integer> materialCosts = new HashMap<>();
+        int total = 0;
 
         for (Component component : components) {
 
+            int componentCost = 0;
+
             for (Material material : component.getMaterials()) {
-
-                int cost = material.quantity * material.costPerUnit;
-
-                materialCosts.put(material.name, cost);
+                componentCost += material.quantity * material.costPerUnit;
             }
-        }
 
-        int total = 0;
-
-        for (int cost : materialCosts.values()) {
-            total += cost;
+            total = componentCost;
         }
 
         return total;
@@ -69,7 +64,7 @@ class Material {
     Material(String name, int quantity, int costPerUnit) {
         this.name = name;
         this.quantity = quantity;
-        this.costPerUnit = quantity;
+        this.costPerUnit = costPerUnit;
     }
 
 }
@@ -131,12 +126,12 @@ class Roof extends Component {
                 new Material(
                         "Cement",
                         8 * quantity,
-                        12));
+                        10));
 
         list.add(
                 new Material(
                         "Steel",
-                        20+quantity,
+                        20 * quantity,
                         15));
 
         return list;
@@ -162,7 +157,7 @@ class Floor extends Component {
         list.add(
                 new Material(
                         "Sand",
-                        50 * quantity,
+                        50 + quantity,
                         1));
 
         return list;
